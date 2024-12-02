@@ -1,17 +1,15 @@
 package aoc.day01;
 
-import main.java.aoc.day01.Day01;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day01Test {
+@Slf4j
+class Day01Test {
 
     @Test
-    public void testPart1(){
+    void testPart1(){
         // Given
         String input = "test";
 
@@ -20,10 +18,11 @@ public class Day01Test {
 
         // Then
         assertEquals(input, result);
+        log.info("Part 1 Success");
     }
 
     @Test
-    public void testPart2(){
+    void testPart2(){
         // Given
         String input = "test";
 
@@ -32,5 +31,6 @@ public class Day01Test {
 
         // Then
         assertEquals(input, result);
+        log.info("Part 2 Success");
     }
 }

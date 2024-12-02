@@ -1,4 +1,4 @@
-package main.java.aoc;
+package aoc;
 
 public interface Day {
 

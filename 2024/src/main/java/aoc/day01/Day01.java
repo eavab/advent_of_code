@@ -1,7 +1,7 @@
-package main.java.aoc.day01;
+package aoc.day01;
 
-import main.java.aoc.Day;
-import main.java.aoc.Utils;
+import aoc.Day;
+import aoc.Utils;
 
 import java.util.List;
 
