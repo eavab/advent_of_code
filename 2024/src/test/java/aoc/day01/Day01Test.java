@@ -43,7 +43,7 @@ class Day01Test {
         int sumOfDifference = differenceList.stream().mapToInt(Integer::intValue).sum();
 
         log.info(Integer.toString(sumOfDifference));
-        assertEquals(sumOfDifference, 11);
+        assertEquals(11, sumOfDifference);
     }
 
     @Test
