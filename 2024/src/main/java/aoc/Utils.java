@@ -31,7 +31,8 @@ public class Utils {
     }
 
     public File getInput(String filePath) {
-        filePath = "data/"+filePath;
+        // TODO: setup some control values here for if it is a resource file in the project or out in the internet
+        //filePath = "data/"+filePath;
 
         // get file pointer from Resources
         ClassLoader classLoader = this.getClass().getClassLoader();
