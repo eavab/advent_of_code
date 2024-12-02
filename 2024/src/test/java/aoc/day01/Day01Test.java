@@ -14,7 +14,6 @@ class Day01Test {
 
     @Test
     void testPart0() {
-
         Utils utils = new Utils();
 
         List<int[]> tokens = new ArrayList<>();
@@ -48,15 +47,35 @@ class Day01Test {
 
     @Test
     void testPart1(){
-        // Given
-        String input = "test";
+        // https://adventofcode.com/2024/day/1/input
+        Utils utils = new Utils();
 
-        // When
-        String result = new Day01().part1(input);
+        List<int[]> tokens = new ArrayList<>();
 
-        // Then
-        assertEquals(input, result);
-        log.info("Part 1 Success");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day01/part1.txt");
+
+        List<Integer> leftList = new ArrayList<>();
+        List<Integer> rightList = new ArrayList<>();
+        List<Integer> differenceList = new ArrayList<>();
+
+        // split the list in two
+        for(int[] token : tokens) {
+            leftList.add(token[0]);
+            rightList.add(token[1]);
+        }
+
+        // sort both lists in ascending order
+        leftList.sort(Integer::compareTo);
+        rightList.sort(Integer::compareTo);
+
+        // build the list of differences
+        for(int i = 0; i < leftList.size(); i++) {
+            differenceList.add(Math.abs(leftList.get(i) - rightList.get(i)));
+        }
+
+        int sumOfDifference = differenceList.stream().mapToInt(Integer::intValue).sum();
+
+        log.info(Integer.toString(sumOfDifference));
     }
 
     @Test
