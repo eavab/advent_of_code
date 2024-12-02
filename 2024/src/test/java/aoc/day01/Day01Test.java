@@ -21,9 +21,29 @@ class Day01Test {
 
         utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day01/sample.txt");
 
-        List<String> leftList = new ArrayList<>();
-        List<String> rightList = new ArrayList<>();
+        List<Integer> leftList = new ArrayList<>();
+        List<Integer> rightList = new ArrayList<>();
+        List<Integer> differenceList = new ArrayList<>();
 
+        // split the list in two
+        for(int[] token : tokens) {
+            leftList.add(token[0]);
+            rightList.add(token[1]);
+        }
+
+        // sort both lists in ascending order
+        leftList.sort(Integer::compareTo);
+        rightList.sort(Integer::compareTo);
+
+        // build the list of differences
+        for(int i = 0; i < leftList.size(); i++) {
+            differenceList.add(Math.abs(leftList.get(i) - rightList.get(i)));
+        }
+
+        int sumOfDifference = differenceList.stream().mapToInt(Integer::intValue).sum();
+
+        log.info(Integer.toString(sumOfDifference));
+        assertEquals(sumOfDifference, 11);
     }
 
     @Test
