@@ -1,30 +1,13 @@
-package aoc.day01;
+package aoc.day02;
 
-import aoc.Utils;
+import aoc.day01.Day01;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-class Day01Test {
-
-    @Test
-    void testPart0() {
-
-        Utils utils = new Utils();
-
-        List<int[]> tokens = new ArrayList<>();
-
-        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day01/sample.txt");
-
-        List<String> leftList = new ArrayList<>();
-        List<String> rightList = new ArrayList<>();
-
-    }
+class Day02Test {
 
     @Test
     void testPart1(){
