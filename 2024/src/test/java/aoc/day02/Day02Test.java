@@ -36,15 +36,22 @@ class Day02Test {
 
     @Test
     void testPart1(){
-        // Given
-        String input = "test";
+        Utils utils = new Utils();
+        Day02 day02 = new Day02();
 
-        // When
-        String result = new Day01().part1(input);
+        List<int[]> tokens = new ArrayList<>();
 
-        // Then
-        assertEquals(input, result);
-        log.info("Part 1 Success");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day02/part1.txt");
+
+        int safeReportCount = 0;
+
+        for(int[] token : tokens) {
+            if(day02.validateReport(token)) {
+                safeReportCount++;
+            }
+        }
+
+        log.info("safeReportCount: {}", safeReportCount);
     }
 
     @Test
