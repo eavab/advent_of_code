@@ -25,13 +25,42 @@ class Day02Test {
         int safeReportCount = 0;
 
         for(int[] token : tokens) {
-            if(day02.validateReport(token)) {
+            if(day02.validateReport(token, false)) {
+                log.info("checking token {} -- Safe", token);
                 safeReportCount++;
+            } else {
+                log.info("checking token {} -- Unsafe", token);
+
             }
         }
 
         log.info("safeReportCount: {}", safeReportCount);
         assertEquals(2, safeReportCount);
+    }
+
+    @Test
+    void testPart2Sample() {
+        Utils utils = new Utils();
+        Day02 day02 = new Day02();
+
+        List<int[]> tokens = new ArrayList<>();
+
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day02/sample.txt");
+
+        int safeReportCount = 0;
+
+        for(int[] token : tokens) {
+            if(day02.validateReport(token, true)) {
+                log.info("checking token {} -- Safe", token);
+                safeReportCount++;
+            } else {
+                log.info("checking token {} -- Unsafe", token);
+
+            }
+        }
+
+        log.info("safeReportCount: {}", safeReportCount);
+        assertEquals(4, safeReportCount);
     }
 
     @Test
@@ -46,7 +75,7 @@ class Day02Test {
         int safeReportCount = 0;
 
         for(int[] token : tokens) {
-            if(day02.validateReport(token)) {
+            if(day02.validateReport(token, false)) {
                 safeReportCount++;
             }
         }
@@ -56,14 +85,21 @@ class Day02Test {
 
     @Test
     void testPart2(){
-        // Given
-        String input = "test";
+        Utils utils = new Utils();
+        Day02 day02 = new Day02();
 
-        // When
-        String result = new Day01().part2(input);
+        List<int[]> tokens = new ArrayList<>();
 
-        // Then
-        assertEquals(input, result);
-        log.info("Part 2 Success");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day02/part1.txt");
+
+        int safeReportCount = 0;
+
+        for(int[] token : tokens) {
+            if(day02.validateReport(token, true)) {
+                safeReportCount++;
+            }
+        }
+
+        log.info("safeReportCount: {}", safeReportCount);
     }
 }

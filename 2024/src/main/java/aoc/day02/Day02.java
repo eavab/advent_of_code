@@ -18,17 +18,27 @@ public class Day02 implements Day {
         return input;
     }
 
-    public Boolean validateReport(int[] reportValues) {
-        if(reportValues[0] > reportValues[1]) {
-            // report is decreasing in value, so validate the decrease
-            return checkDecrease(reportValues);
-        } else if (reportValues[0] < reportValues[1]) {
-            // report is increasing in value, so validate the increase
-            return checkIncrease(reportValues);
+    public Boolean validateReport(int[] reportValues, Boolean problemDampener) {
+        boolean isDecreasing = reportValues[0] > reportValues[1];
+        boolean isIncreasing = reportValues[0] < reportValues[1];
+
+        if (isDecreasing) {
+            if (!checkDecrease(reportValues)) {
+                return problemDampener
+                        ? validateReport(new int[]{reportValues[0], reportValues[2]}, false)
+                        : false;
+            }
+        } else if (isIncreasing) {
+            if (!checkIncrease(reportValues)) {
+                return problemDampener
+                        ? validateReport(new int[]{reportValues[0], reportValues[2]}, false)
+                        : false;
+            }
         } else {
-            // first two values are equal, so neither an increase nor decrease
-            return false;
+            return false; // First two values are equal
         }
+
+        return true; // Validation passed
     }
 
     // Check if the decrease in value is at a rate of 1, 2, or 3
