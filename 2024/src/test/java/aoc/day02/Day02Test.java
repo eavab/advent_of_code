@@ -83,6 +83,7 @@ class Day02Test {
         assertEquals(670, safeReportCount);
     }
 
+    // TODO: update the algorithm to actually clone the int[] and remove the value and pass to algorithm for second check instead of getting clever for comparison positions
     @Test
     void testPart2(){
         Utils utils = new Utils();
@@ -103,6 +104,6 @@ class Day02Test {
         log.info("safeReportCount: {}", safeReportCount);
 
         // not an exact result, still narrowing it down
-        assert(safeReportCount < 740);
+        assert(safeReportCount < 626);
     }
 }
