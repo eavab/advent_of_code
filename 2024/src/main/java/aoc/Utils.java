@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
@@ -36,16 +37,16 @@ public class Utils {
         return new File(resources.getFile());
     }
 
-    public int[] tokenize(String line, int size) {
+    public int[] tokenize(String line) {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(line);
-        int[] tokens = new int[size];
-        int i = 0;
-        while(matcher.find()) {
-            tokens[i] = Integer.parseInt(matcher.group());
-            i++;
+        List<Integer> tokenList = new ArrayList<>();
+
+        while (matcher.find()) {
+            tokenList.add(Integer.parseInt(matcher.group()));
         }
 
-        return tokens;
+        // Convert the list to an array
+        return tokenList.stream().mapToInt(Integer::intValue).toArray();
     }
 }

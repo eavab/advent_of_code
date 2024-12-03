@@ -20,7 +20,7 @@ class Day02Test {
 
         List<int[]> tokens = new ArrayList<>();
 
-        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line, 5)), "day02/sample.txt");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day02/sample.txt");
 
         int safeReportCount = 0;
 
