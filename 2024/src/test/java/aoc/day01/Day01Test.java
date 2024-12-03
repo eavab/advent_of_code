@@ -18,7 +18,7 @@ class Day01Test {
 
         List<int[]> tokens = new ArrayList<>();
 
-        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day01/sample.txt");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line, 2)), "day01/sample.txt");
 
         List<Integer> leftList = new ArrayList<>();
         List<Integer> rightList = new ArrayList<>();
@@ -52,7 +52,7 @@ class Day01Test {
 
         List<int[]> tokens = new ArrayList<>();
 
-        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day01/sample.txt");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line,2 )), "day01/sample.txt");
 
         List<Integer> leftList = new ArrayList<>();
         List<Integer> rightList = new ArrayList<>();
@@ -96,7 +96,7 @@ class Day01Test {
 
         List<int[]> tokens = new ArrayList<>();
 
-        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day01/part1.txt");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line, 2)), "day01/part1.txt");
 
         List<Integer> leftList = new ArrayList<>();
         List<Integer> rightList = new ArrayList<>();
@@ -130,7 +130,7 @@ class Day01Test {
 
         List<int[]> tokens = new ArrayList<>();
 
-        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day01/part1.txt");
+        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line, 2)), "day01/part1.txt");
 
         List<Integer> leftList = new ArrayList<>();
         List<Integer> rightList = new ArrayList<>();

@@ -1,7 +1,5 @@
 package aoc;
 
-import org.springframework.stereotype.Component;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -38,10 +36,10 @@ public class Utils {
         return new File(resources.getFile());
     }
 
-    public int[] tokenize(String line) {
+    public int[] tokenize(String line, int size) {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(line);
-        int[] tokens = new int[2];
+        int[] tokens = new int[size];
         int i = 0;
         while(matcher.find()) {
             tokens[i] = Integer.parseInt(matcher.group());
