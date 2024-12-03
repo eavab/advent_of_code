@@ -80,6 +80,7 @@ class Day02Test {
         }
 
         log.info("safeReportCount: {}", safeReportCount);
+        assertEquals(670, safeReportCount);
     }
 
     @Test
@@ -100,5 +101,8 @@ class Day02Test {
         }
 
         log.info("safeReportCount: {}", safeReportCount);
+
+        // not an exact result, still narrowing it down
+        assert(safeReportCount < 740);
     }
 }

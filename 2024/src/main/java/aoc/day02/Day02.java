@@ -31,6 +31,7 @@ public class Day02 implements Day {
 
         boolean isDecreasing = reportValues[0] > reportValues[1];
         boolean isIncreasing = reportValues[0] < reportValues[1];
+        boolean isEqual = reportValues[0] == reportValues[1];
 
         if (isDecreasing) {
             if (!checkDecrease(reportValues)) {
@@ -48,8 +49,12 @@ public class Day02 implements Day {
                 // Allow one failure and skip the problematic value
                 return validateReportRecursive(new int[]{reportValues[0], reportValues[2]}, problemDampener, true);
             }
-        } else {
-            return false; // Equal values are invalid
+        } else if (isEqual) {
+            if (failureOccurred || !problemDampener) {
+                return false; // Fail if a failure already occurred or dampener is off
+            }
+            // Allow one failure and skip the problematic value
+            return validateReportRecursive(new int[]{reportValues[0], reportValues[2]}, problemDampener, true);
         }
 
         // Move to the next pair for validation
