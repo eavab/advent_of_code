@@ -2,12 +2,12 @@ package aoc.day02;
 
 import aoc.Utils;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 class Day02Test {
@@ -18,23 +18,22 @@ class Day02Test {
         Day02 day02 = new Day02();
 
         List<int[]> tokens = new ArrayList<>();
-
-        utils.getInputLinesByLine(line-> tokens.add(utils.tokenize(line)), "day02/sample.txt");
+        utils.getInputLinesByLine(line -> tokens.add(utils.tokenize(line)), "day02/sample.txt");
 
         int safeReportCount = 0;
 
-        for(int[] token : tokens) {
-            if(day02.validateReport(token, false)) {
-                log.info("checking token {} -- Safe", token);
+        for (int[] token : tokens) {
+            boolean isSafe = day02.validateReport(token, false);
+            if (isSafe) {
+                log.info("Token {} classified as Safe due to recursive validation.", Arrays.toString(token));
                 safeReportCount++;
             } else {
-                log.info("checking token {} -- Unsafe", token);
-
+                log.info("Token {} classified as Unsafe due to recursive validation.", Arrays.toString(token));
             }
         }
 
         log.info("safeReportCount: {}", safeReportCount);
-        assertEquals(2, safeReportCount);
+        Assertions.assertEquals(2, safeReportCount);
     }
 
     @Test
@@ -59,7 +58,7 @@ class Day02Test {
         }
 
         log.info("safeReportCount: {}", safeReportCount);
-        assertEquals(4, safeReportCount);
+        Assertions.assertEquals(4, safeReportCount);
     }
 
     @Test
@@ -80,7 +79,7 @@ class Day02Test {
         }
 
         log.info("safeReportCount: {}", safeReportCount);
-        assertEquals(670, safeReportCount);
+        Assertions.assertEquals(670, safeReportCount);
     }
 
     // TODO: update the algorithm to actually clone the int[] and remove the value and pass to algorithm for second check instead of getting clever for comparison positions

@@ -1,5 +1,7 @@
 package aoc;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URI;
@@ -16,6 +18,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
+@Slf4j
 public class App {
 
     /**
@@ -50,7 +53,7 @@ public class App {
             result = dayInstance.part2(input);
         }
 
-        System.out.println(result);
+        log.info(result);
     }
 
     /**
@@ -143,7 +146,7 @@ public class App {
     private static Optional<String> readClassPathFile(String fileName) {
         URL url = ClassLoader.getSystemResource(fileName);
         if (url == null) {
-            System.out.println("No file " + fileName + " on the classpath.");
+            log.info("No file " + fileName + " on the classpath.");
             return Optional.empty();
         }
         Path path = Paths.get(url.getFile());
@@ -154,7 +157,7 @@ public class App {
         try {
             return Optional.of(Files.readString(path));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
             return Optional.empty();
         }
     }
@@ -193,7 +196,7 @@ public class App {
      */
     private static String downloadInput(int year, int day, String cookie) {
         String url = String.format("https://adventofcode.com/%d/day/%d/input", year, day);
-        System.out.println("Downloading " + url);
+        log.info("Downloading {}", url);
 
         URI uri;
         try {
@@ -255,7 +258,7 @@ public class App {
             if (cookie.isPresent()) {
                 input = downloadInput(year, day, cookie.get());
             } else {
-                System.err.println("Cannot get input for year " + year + " and day " + day + "."
+                log.error("Cannot get input for year " + year + " and day " + day + "."
                         + " Either put the input at 'src/main/resources/day[xx].txt"
                         + " or use your browser's network inspector to read the 'cookie' header from the request for"
                         + " input and store it in 'src/main/resources/session.txt' (this file will be ignored by Git).");
@@ -273,9 +276,9 @@ public class App {
      */
     private static int intOrDie(String numeric) {
         try {
-            return Integer.valueOf(numeric);
+            return Integer.parseInt(numeric);
         } catch (NumberFormatException e) {
-            System.out.println("The argument '" + numeric + "' could not be interpreted as an integer number.");
+            log.info("The argument '{}' could not be interpreted as an integer number.", numeric);
             System.exit(1);
         }
         return -1;
@@ -300,8 +303,8 @@ public class App {
             }
             return (Day) dayClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Failed to load " + dayClassName
+            log.error(e.getMessage(), e);
+            log.error("Failed to load " + dayClassName
                     + " class. Did you remember to create it and implement the Day interface?");
             System.exit(1);
         }
